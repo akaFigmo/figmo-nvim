@@ -7,6 +7,8 @@ my config up to date between all the devices.
 ## Usage
 Clone the repo to your Neovim configuration path or use it as a reference, whatever.
 
+If you clone the repo and want to use it straight up, rename it to `nvim` in your config folder.
+
 ## Plugins
 - zk: note taking assistant (uses telescope)
 - telescope: fuzzy finder
