@@ -210,7 +210,27 @@ return {
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {
+          before_init = function(_, config)
+            -- Ensure pyright sees the project's venv if it exists
+            local root = config.root_dir or vim.loop.cwd()
+            local venv_python = root .. "/.venv/bin/python"
+
+            if vim.fn.filereadable(venv_python)==1 then
+              config.settings = config.settings or {}
+              config.settings.python = config.settings.python or {}
+              config.settings.python.pythonPath = venv_python
+            end
+          end,
+          settings = {
+            python = {
+              analysis = {
+                typeCheckingMode = "basic",
+                diagnosticMode = "workspace",
+              },
+            },
+          },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
