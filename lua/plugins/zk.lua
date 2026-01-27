@@ -1,6 +1,10 @@
 return {
   {
     "zk-org/zk-nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim",
+    },
     config = function()
       require("zk").setup({
         picker = "telescope",
@@ -8,10 +12,10 @@ return {
           config = {
             name = "zk",
             cmd = {"zk", "lsp"},
-            filetypes = {"markdown"},
           },
           auto_attach = {
             enabled = true,
+            filetypes = { "markdown" },
           },
         },
       })
